@@ -9,7 +9,6 @@
     <link rel="icon" type="image/x-icon" href="favicon.ico">
 
     <!-- CollectJS tokenization -->
-    <!-- <script src="https://cdn.primaverahealthcare.com/static/js/collectJS.js" -->
     <script src="https://secure.networkmerchants.com/token/Collect.js"
       data-tokenization-key="q7nFSA-YbnMWa-rQmamh-Jvm5Ep">
     </script>
@@ -41,14 +40,12 @@
         "country": "US",
         "variant": "inline",
         "callback": function (response) {
-          alert(response.token);
+          // create a new element to render the response token
           var input = document.createElement("input");
-          input.type = "hidden";
           input.name = "payment_token";
           input.value = response.token;
           var form = document.getElementsByTagName("form")[0];
           form.appendChild(input);
-          form.submit();
         }
       });
     });

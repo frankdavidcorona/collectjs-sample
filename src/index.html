@@ -1,13 +1,62 @@
 <!doctype html>
 <html lang="en">
-<head>
-  <meta charset="utf-8">
-  <title>NmiSample</title>
-  <base href="/">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="icon" type="image/x-icon" href="favicon.ico">
-</head>
-<body>
-  <app-root></app-root>
-</body>
+
+  <head>
+    <meta charset="utf-8">
+    <title>NmiSample</title>
+    <base href="/">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+
+    <!-- CollectJS tokenization -->
+    <!-- <script src="https://cdn.primaverahealthcare.com/static/js/collectJS.js" -->
+    <script src="https://secure.networkmerchants.com/token/Collect.js"
+      data-tokenization-key="q7nFSA-YbnMWa-rQmamh-Jvm5Ep">
+    </script>
+
+    <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      CollectJS.configure({
+        'paymentSelector': '#customPayButton',
+        "fields": {
+          "ccnumber": {
+            "selector": "#demoCcnumber",
+            "title": "Card Number",
+            "placeholder": "0000 0000 0000 0000"
+          },
+          "ccexp": {
+            "selector": "#demoCcexp",
+            "title": "Card Expiration",
+            "placeholder": "00 / 00"
+          },
+          "cvv": {
+            "display": "show",
+            "selector": "#demoCvv",
+            "title": "CVV Code",
+            "placeholder": "***"
+          },
+        },
+        "price": "1.00",
+        "currency": "USD",
+        "country": "US",
+        "variant": "inline",
+        "callback": function (response) {
+          alert(response.token);
+          var input = document.createElement("input");
+          input.type = "hidden";
+          input.name = "payment_token";
+          input.value = response.token;
+          var form = document.getElementsByTagName("form")[0];
+          form.appendChild(input);
+          form.submit();
+        }
+      });
+    });
+  </script>
+  </head>
+
+  <body>
+    <app-root></app-root>
+  </body>
+
 </html>
